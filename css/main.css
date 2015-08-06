@@ -39,5 +39,10 @@ ul.posts {
 }
 
 ul.posts li {
+    font-size: 1.0em;
     list-style: none;
+}
+
+.IPA {
+    color: #111;
 }
