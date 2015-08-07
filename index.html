@@ -9,6 +9,7 @@
 			VK.init({apiId: 5024414, onlyWidgets: true});
 		</script>
 	</head>
+	
 	<body>
 		<nav>
     		<ul>
@@ -20,22 +21,24 @@
         		<li><a href="/btn">TestPage</a></li>
     		</ul>
 		</nav>
+
 		<div class="container">
     		<div class="blurb">
         		<h1>Hi there, my name is Tagir!<span class="IPA" style="white-space: nowrap;"> IPA: /tɐˈgʲir/</span></h1>
-				<p>I'm receiving my master's degree in <em><a href="http://mipt.ru/en/">Moscow Institute of Physics and Technology</a></em>.</p>
+			<p>I'm receiving my master's degree in <em><a href="http://mipt.ru/en/">Moscow Institute of Physics and Technology</a></em>.</p>
     		</div><!-- /.blurb -->
-    		<br><img width="200" height="267" src="https://pp.vk.me/c628428/v628428562/d37c/G1bqpofOQPo.jpg" alt="Tagir"><br>
+    		<img width="200" height="267" src="https://pp.vk.me/c628428/v628428562/d37c/G1bqpofOQPo.jpg" alt="Tagir">
 		</div><!-- /.container -->
-		<!-- Put this div tag to the place, where the Like block will be -->
-		<div id="vk_like"></div>
-			<script type="text/javascript">
-				VK.Widgets.Like("vk_like", {type: "button", verb: 1, height: 24});
-			</script>
+		
 		<footer>
     		<ul>
         		<li><a href="mailto:tagf@users.noreply.github.com">email</a></li>
         		<li><a href="https://github.com/tagf">github.com/tagf</a></li>
+        		<!-- Put this div tag to the place, where the Like block will be -->
+			<li><div id="vk_like">Like</div>
+			<script type="text/javascript">
+				VK.Widgets.Like("vk_like", {type: "button", verb: 1, height: 24});
+			</script></li>
 			</ul>
 		</footer>
 	</body>
