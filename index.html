@@ -32,14 +32,15 @@
 		
 		<footer>
     		<ul>
+    			<!-- Put this div tag to the place, where the Like block will be -->
+    			<li><div id="vk_like"></div>
+			<script type="text/javascript">
+				VK.Widgets.Like("vk_like", {type: "button", pageTitle: "Tagir's github site", pageDescription: "Hi there, my name is Tagir!", verb: 1, height: 24});
+			</script></li>
         		<li><a href="mailto:tagf@users.noreply.github.com">email</a></li>
         		<li><a href="https://github.com/tagf">github.com/tagf</a></li>
         		<!-- Put this div tag to the place, where the Like block will be -->
-			<li><div id="vk_like">Like</div>
-			<script type="text/javascript">
-				VK.Widgets.Like("vk_like", {type: "button", verb: 1, height: 24});
-			</script></li>
-			</ul>
+		</ul>
 		</footer>
 	</body>
 </html>
