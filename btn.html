@@ -1,4 +1,70 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Prime test</title>
+</head>
+<body onload="fillPrimes()">
+<h2>Enter integer to test primarity</h2>
+<form action="javascript:btnClick()">
+<input type="text" id="in" value="13"  style="width: 440px;">
+<br>
+<input type="submit" value="Test   ">
+<p style="display: inline">
+  button was clicked 
+  <span id="num" style="color: blue; font-size: 120%">0</span>
+  times
+</p>
+<br>
+<button id="run" type="button" onclick="outputElem.innerHTML = ''">Clean output</button>
+<pre><div id="out"></div></pre>
+</form>
+    
+<script>
+var nClicked = 0,
+nClickedSpan = document.getElementById("num"),
+inputElem = document.getElementById("in"),
+outputElem = document.getElementById("out");
 
+function primeTest(num) {  
+  var i = 2;
+  while (i*i <= num) {
+    if(num%i==0){return i}i++;
+    if(num%i==0){return i}i++;
+    if(num%i==0){return i}i++;
+    if(num%i==0){return i}i++;
+  }
+  return num;
+}
+
+function primeOut(number) {
+  if  (!isNaN(number) && number > 1) {
+    var primeTestDiv = primeTest(number);
+    if (primeTestDiv == number) {
+      outputElem.innerHTML += "\n&gt;&gt;" + "<span style=\"color: green\">" + number.toString() + "</span> is prime";
+    } else {
+      outputElem.innerHTML += "\n&gt;&gt;" + "<span style=\"color: red\">" + number.toString() + "</span> is divisible by " + primeTestDiv.toString();
+    }
+  } else {
+    outputElem.innerHTML += "\n&gt;&gt;" + number.toString() + " is NaN or not prime (&lt;2)";
+  }
+}
+
+function btnClick() {
+  nClicked++;
+  nClickedSpan.innerHTML = nClicked;
+  if (inputElem.value) {
+    var number = parseInt(inputElem.value);
+    inputElem.value = "";
+    primeOut(number);
+  }
+}
+
+function fillPrimes() {
+  for (var i = 2; i < 13; i++) {
+    primeOut(i);
+  }
+}
+</script>
+
+</body>
 </html>
