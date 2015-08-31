@@ -4,9 +4,12 @@
   <title>Prime test</title>
 </head>
 <body onload="fillPrimes()">
-<h2>Enter integer to test primarity</h2>
+<h2>Enter a number to test it's primarity</h2>
+<p>Maximal integer JS can handle is 2^53 = 9007199254740992 <br> Be sure to update a number before testing again</p>
 <form action="javascript:btnClick()">
-<input type="text" id="in" value="13"  style="width: 440px;">
+<input type="text" id="in" value="13" style="width: 440px;" oninput="inputValidate()">
+<br>
+<span>Autoincrement by </span><input type="text" id="increm" value="2" style="width: 100px;" oninput="incremValidate()">
 <br>
 <input type="submit" value="Test   ">
 <p style="display: inline">
@@ -23,21 +26,24 @@
 var nClicked = 0,
 nClickedSpan = document.getElementById("num"),
 inputElem = document.getElementById("in"),
-outputElem = document.getElementById("out");
+outputElem = document.getElementById("out"),
+incremElem = document.getElementById("increm"),
+currentNumber = 13,
+oldNumber = 12,
+autoIncrem = 2,
+isNumberValid = true;
 
 function primeTest(num) {  
-  var i = 2;
-  while (i*i <= num) {
-    if(num%i==0){return i}i++;
-    if(num%i==0){return i}i++;
-    if(num%i==0){return i}i++;
-    if(num%i==0){return i}i++;
+  for (var i = 2; i*i <= num; i++) {
+    if (num % i == 0) {
+      return i;
+    }
   }
   return num;
 }
 
 function primeOut(number) {
-  if  (!isNaN(number) && number > 1) {
+  if  (number > 1) {
     var primeTestDiv = primeTest(number);
     if (primeTestDiv == number) {
       outputElem.innerHTML += "\n&gt;&gt;" + "<span style=\"color: green\">" + number.toString() + "</span> is prime";
@@ -45,17 +51,38 @@ function primeOut(number) {
       outputElem.innerHTML += "\n&gt;&gt;" + "<span style=\"color: red\">" + number.toString() + "</span> is divisible by " + primeTestDiv.toString();
     }
   } else {
-    outputElem.innerHTML += "\n&gt;&gt;" + number.toString() + " is NaN or not prime (&lt;2)";
+    outputElem.innerHTML += "\n&gt;&gt;" + number.toString() + " is not prime and &lt; 2";
   }
 }
 
 function btnClick() {
   nClicked++;
   nClickedSpan.innerHTML = nClicked;
-  if (inputElem.value) {
-    var number = parseInt(inputElem.value);
-    inputElem.value = "";
-    primeOut(number);
+  if (isNumberValid) {
+      primeOut(currentNumber);
+      oldNumber = currentNumber;
+      inputElem.value = (currentNumber + autoIncrem).toString();
+      inputValidate();
+  }
+}
+
+function inputValidate() {
+  isNumberValid = false;
+  currentNumber = parseInt(inputElem.value);
+  if (!isNaN(currentNumber) && currentNumber != oldNumber && currentNumber <= 9007199254740992 && currentNumber > 0) {
+    isNumberValid = true;
+    inputElem.style.color = "black";
+  } else {
+    inputElem.style.color = "red";
+  }
+}
+
+function incremValidate() {
+  autoIncrem = parseInt(incremElem.value);
+  if (!isNaN(autoIncrem)) {
+    incremElem.style.color = "black";
+  } else {
+    incremElem.style.color = "red";
   }
 }
 
@@ -63,6 +90,14 @@ function fillPrimes() {
   for (var i = 2; i < 13; i++) {
     primeOut(i);
   }
+}
+
+function testMaxInt() {
+  var i = 2
+  while (i + 1 != i) {
+    i *= 2;
+  }
+  primeOut(i);
 }
 </script>
 
